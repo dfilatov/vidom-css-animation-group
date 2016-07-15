@@ -3,3 +3,7 @@
 ## What is it?
 
 This module provides API for "appearance", "entering" and "leaving" animation via CSS transitions and animations inside Vidom.
+
+## Example
+
+[CSSTransitionAnimation](https://dfilatov.github.io/vidom-css-animation-group/)
