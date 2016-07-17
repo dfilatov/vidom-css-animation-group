@@ -74,12 +74,12 @@ import { CSSAnimationGroup } from 'vidom-css-animation-group';
 class MyListComponent extend Component {
     onRender({ items }) {
         return (
-            <CSSTransitionGroup
+            <CSSAnimationGroup
                 appear="list-item_appear"
                 enter="list-item_enter"
                 leave="list-item_leave">
                 { items.map(({ id, text }) => <div key={ id }>{ text }</div> }
-            </CSSTransitionGroup>
+            </CSSAnimationGroup>
         );
     }
 }
