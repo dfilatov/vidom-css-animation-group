@@ -16,7 +16,7 @@ npm i vidom-css-animation-group
 
 ## How to use
 
-This module provides two components: CSSTransitionGroup and CSSAnimationGroup. If you animation is based on CSS transition, you should use the first one, or if you use CSS animation then use the second.
+This module provides two components: CSSTransitionGroup and CSSAnimationGroup. If you animation is based on CSS transition, you should use the first one, or if you use CSS animation then use the second one.
 
 ### CSSTransitionGroup
 
@@ -24,18 +24,18 @@ CSSTransitionGroup supports following pairs of attributes:
 
 #### Appearing phase
 CSS-classes which are set for each child after group has been mounted.
-  * *{String}* `appearFrom` CSS class which contains initial state of your appearing transition
-  * *{String}* `appearTo` CSS class which contains final state of your appearing transition
+  * *{String}* `appearFrom` CSS class which describes initial state of your appearing transition
+  * *{String}* `appearTo` CSS class which describes final state of your appearing transition
 
 #### Entering phase
 CSS-classes which are set when a new child enters to already mounted group.
-  * *{String}* `enterFrom` CSS class which contains initial state of your entering transition
-  * *{String}* `enterTo` CSS class which contains final state of your entering transition
+  * *{String}* `enterFrom` CSS class which describes initial state of your entering transition
+  * *{String}* `enterTo` CSS class which describes final state of your entering transition
 
 #### Leaving phase  
 CSS-classes which are set when a child leaves from mounted group.
-  * *{String}* `leaveFrom` CSS class which contains initial state of your leaving transition
-  * *{String}* `leaveTo` CSS class which contains final state of your leaving transition
+  * *{String}* `leaveFrom` CSS class which describes initial state of your leaving transition
+  * *{String}* `leaveTo` CSS class which describes final state of your leaving transition
   
 *Note* Any of these pairs are optional, but if you specify either CSS-class from pair, you have to specify another one. For instance, if you specify `enterFrom`, you must specify `enterTo` and vice versa.
 ```jsx
@@ -60,3 +60,27 @@ class MyListComponent extend Component {
 ```
 
 ### CSSAnimationGroup
+
+CSSTransitionGroup supports following attributes:
+
+  * *{String}* `appear` CSS class which describes appearing animation
+  * *{String}* `enter` CSS class which describes entering animation
+  * *{String}* `leave` CSS class which describes leaving animation
+
+```jsx
+import { Component } from 'vidom';
+import { CSSAnimationGroup } from 'vidom-css-animation-group';
+
+class MyListComponent extend Component {
+    onRender({ items }) {
+        return (
+            <CSSTransitionGroup
+                appear="list-item_appear"
+                enter="list-item_enter"
+                leave="list-item_leave">
+                { items.map(({ id, text }) => <div key={ id }>{ text }</div> }
+            </CSSTransitionGroup>
+        );
+    }
+}
+```
