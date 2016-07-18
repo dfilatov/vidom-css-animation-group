@@ -90,7 +90,7 @@
 	            'class': 'app'
 	        }).children([__vnode__('h1').attrs({
 	            'class': 'app__title'
-	        }).children('CSSTransitionGroup example'), __vnode__('div').attrs({
+	        }).children('CssTransitionGroup example'), __vnode__('div').attrs({
 	            'class': 'app__info'
 	        }).children([__vnode__('span').children('Click on circle to remove it.'), __vnode__('br'), __vnode__('span').children('Click anywhere else to create a new circle.')]), __vnode__('div').attrs({
 	            'class': 'app__playground',
