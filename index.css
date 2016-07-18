@@ -27,6 +27,7 @@ body
     position: relative;
     border: 1px solid #000;
     overflow: hidden;
+    touch-action: manipulation;
 }
 
 .app__link
@@ -43,6 +44,7 @@ body
     overflow: hidden;
     border-radius: 50%;
     transform: translate(-50%, -50%);
+    touch-action: manipulation;
 }
 
 .circle:hover
