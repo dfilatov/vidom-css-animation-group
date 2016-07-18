@@ -2,7 +2,7 @@
 
 ## What is it?
 
-This module provides API for "appearance", "entering" and "leaving" animation via CSS transitions and animations inside Vidom.
+This module provides API for "appearance", "entering" and "leaving" animation via CSS transitions and animations inside Vidom. It's a high-level component based on low-level [vidom-animation-group](https://github.com/dfilatov/vidom-animation-group).
 
 ## Demo
 
