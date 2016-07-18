@@ -1,11 +1,11 @@
 import { mountToDomSync, unmountFromDomSync, node } from 'vidom';
 import { AnimationGroup } from 'vidom-animation-group';
-import { CSSTransitionGroup } from '../../src';
+import { CssTransitionGroup } from '../../src';
 import { requestAnimationFrame, getAnimationEndEvent } from '../../src/utils';
 import simulate from 'simulate';
 import sinon from 'sinon';
 
-describe('CSSTransitionGroup', () => {
+describe('CssTransitionGroup', () => {
     const attrs = {
             appearFrom : 'appear-from',
             appearTo : 'appear-to',
@@ -43,7 +43,7 @@ describe('CSSTransitionGroup', () => {
     it('should add "appearFrom" class for each item', () => {
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup)
+            node(CssTransitionGroup)
                 .attrs(attrs)
                 .children([
                     node('div').key('a').attrs({ id : 'id1' }),
@@ -57,7 +57,7 @@ describe('CSSTransitionGroup', () => {
     it('should add "appearTo" class on next frame for each item', done => {
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup)
+            node(CssTransitionGroup)
                 .attrs(attrs)
                 .children([
                     node('div').key('a').attrs({ id : 'id1' }),
@@ -80,7 +80,7 @@ describe('CSSTransitionGroup', () => {
 
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup)
+            node(CssTransitionGroup)
                 .attrs(attrs)
                 .children([
                     node('div').key('a').attrs({ id : 'id1' })
@@ -103,7 +103,7 @@ describe('CSSTransitionGroup', () => {
     it('should remove "appearFrom" and "appearTo" classes on stop', done => {
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup)
+            node(CssTransitionGroup)
                 .children([
                     node('div').key('a').attrs({ id : 'id1' })
                 ]));
@@ -111,7 +111,7 @@ describe('CSSTransitionGroup', () => {
         setTimeout(() => {
             mountToDomSync(
                 domNode,
-                node(CSSTransitionGroup)
+                node(CssTransitionGroup)
                     .attrs(attrs));
 
             expect(hasClass('id1', 'appear-from')).not.to.be.ok();
@@ -124,11 +124,11 @@ describe('CSSTransitionGroup', () => {
     it('should add "enterFrom" class for each item', () => {
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup));
+            node(CssTransitionGroup));
 
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup)
+            node(CssTransitionGroup)
                 .attrs(attrs)
                 .children([
                     node('div').key('a').attrs({ id : 'id1' }),
@@ -142,11 +142,11 @@ describe('CSSTransitionGroup', () => {
     it('should add "enterTo" class on next frame for each item', done => {
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup));
+            node(CssTransitionGroup));
 
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup)
+            node(CssTransitionGroup)
                 .attrs(attrs)
                 .children([
                     node('div').key('a').attrs({ id : 'id1' }),
@@ -169,11 +169,11 @@ describe('CSSTransitionGroup', () => {
 
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup));
+            node(CssTransitionGroup));
 
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup)
+            node(CssTransitionGroup)
                 .attrs(attrs)
                 .children(node('div').key('a').attrs({ id : 'id1' })));
 
@@ -194,17 +194,17 @@ describe('CSSTransitionGroup', () => {
     it('should remove "enterFrom" and "enterTo" classes on stop', done => {
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup));
+            node(CssTransitionGroup));
 
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup)
+            node(CssTransitionGroup)
                 .children(node('div').key('a').attrs({ id : 'id1' })));
 
         setTimeout(() => {
             mountToDomSync(
                 domNode,
-                node(CSSTransitionGroup)
+                node(CssTransitionGroup)
                     .attrs(attrs));
 
             expect(hasClass('id1', 'enter-from')).not.to.be.ok();
@@ -217,7 +217,7 @@ describe('CSSTransitionGroup', () => {
     it('should add "leaveFrom" class for each item', () => {
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup)
+            node(CssTransitionGroup)
                 .children([
                     node('div').key('a').attrs({ id : 'id1' }),
                     node('div').key('b').attrs({ id : 'id2' })
@@ -225,7 +225,7 @@ describe('CSSTransitionGroup', () => {
 
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup)
+            node(CssTransitionGroup)
                 .attrs(attrs));
 
         expect(hasClass('id1', 'leave-from')).to.be.ok();
@@ -235,7 +235,7 @@ describe('CSSTransitionGroup', () => {
     it('should add "leaveTo" class on next frame for each item', done => {
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup)
+            node(CssTransitionGroup)
                 .children([
                     node('div').key('a').attrs({ id : 'id1' }),
                     node('div').key('b').attrs({ id : 'id2' })
@@ -243,7 +243,7 @@ describe('CSSTransitionGroup', () => {
 
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup)
+            node(CssTransitionGroup)
                 .attrs(attrs));
 
         expect(hasClass('id1', 'leave-to')).not.to.be.ok();
@@ -262,14 +262,14 @@ describe('CSSTransitionGroup', () => {
 
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup)
+            node(CssTransitionGroup)
                 .children([
                     node('div').key('a').attrs({ id : 'id1' })
                 ]));
 
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup)
+            node(CssTransitionGroup)
                 .attrs(attrs));
 
         addTransitionEndListener('id1', () => {
@@ -289,19 +289,19 @@ describe('CSSTransitionGroup', () => {
     it('should remove "leaveFrom" and "leaveTo" classes on stop', done => {
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup)
+            node(CssTransitionGroup)
                 .children([
                     node('div').key('a').attrs({ id : 'id1' })
                 ]));
 
         mountToDomSync(
             domNode,
-            node(CSSTransitionGroup));
+            node(CssTransitionGroup));
 
         setTimeout(() => {
             mountToDomSync(
                 domNode,
-                node(CSSTransitionGroup)
+                node(CssTransitionGroup)
                     .children([
                         node('div').key('a').attrs({ id : 'id1' })
                     ]));

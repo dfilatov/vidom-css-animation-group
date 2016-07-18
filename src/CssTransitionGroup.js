@@ -2,7 +2,7 @@ import { Component, node, IS_DEBUG, console } from 'vidom';
 import { AnimationGroup } from 'vidom-animation-group';
 import { requestAnimationFrame, cancelAnimationFrame, getAnimationEndEvent } from './utils';
 
-export default class CSSTransitionGroup extends Component {
+export default class CssTransitionGroup extends Component {
     onInit() {
         this._onAppear = this._onAppear.bind(this);
         this._onEnter = this._onEnter.bind(this);

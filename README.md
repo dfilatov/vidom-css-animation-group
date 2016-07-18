@@ -16,11 +16,11 @@ npm i vidom-css-animation-group
 
 ## How to use
 
-This module provides two components: CSSTransitionGroup and CSSAnimationGroup. If you animation is based on CSS transition, you should use the first one, or if you use CSS animation then use the second one.
+This module provides two components: CssTransitionGroup and CssAnimationGroup. If you animation is based on CSS transition, you should use the first one, or if you use CSS animation then use the second one.
 
-### CSSTransitionGroup
+### CssTransitionGroup
 
-CSSTransitionGroup supports following pairs of attributes:
+CssTransitionGroup supports following pairs of attributes:
 
 #### Appearing phase
 CSS-classes which are set for each child after group has been mounted.
@@ -40,12 +40,12 @@ CSS-classes which are set when a child leaves from mounted group.
 *Note* Any of these pairs are optional, but if you specify either CSS-class from pair, you have to specify another one. For instance, if you specify `enterFrom`, you must specify `enterTo` and vice versa.
 ```jsx
 import { Component } from 'vidom';
-import { CSSTransitionGroup } from 'vidom-css-animation-group';
+import { CssTransitionGroup } from 'vidom-css-animation-group';
 
 class MyListComponent extend Component {
     onRender({ items }) {
         return (
-            <CSSTransitionGroup
+            <CssTransitionGroup
                 appearFrom="list-item_appear-from"
                 appearTo="list-item_appear-to"
                 enterFrom="list-item_enter-from"
@@ -53,15 +53,15 @@ class MyListComponent extend Component {
                 leaveFrom="list-item_leave-from"
                 leaveTo="list-item_leave-to">
                 { items.map(({ id, text }) => <div key={ id }>{ text }</div> }
-            </CSSTransitionGroup>
+            </CssTransitionGroup>
         );
     }
 }
 ```
 
-### CSSAnimationGroup
+### CssAnimationGroup
 
-CSSTransitionGroup supports following attributes:
+CssTransitionGroup supports following attributes:
 
   * *{String}* `appear` CSS class which describes appearing animation
   * *{String}* `enter` CSS class which describes entering animation
@@ -69,17 +69,17 @@ CSSTransitionGroup supports following attributes:
 
 ```jsx
 import { Component } from 'vidom';
-import { CSSAnimationGroup } from 'vidom-css-animation-group';
+import { CssAnimationGroup } from 'vidom-css-animation-group';
 
 class MyListComponent extend Component {
     onRender({ items }) {
         return (
-            <CSSAnimationGroup
+            <CssAnimationGroup
                 appear="list-item_appear"
                 enter="list-item_enter"
                 leave="list-item_leave">
                 { items.map(({ id, text }) => <div key={ id }>{ text }</div> }
-            </CSSAnimationGroup>
+            </CssAnimationGroup>
         );
     }
 }

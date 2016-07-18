@@ -1,5 +1,5 @@
 import { Component, mountToDom } from 'vidom';
-import { CSSTransitionGroup } from '../src';
+import { CssTransitionGroup } from '../src';
 
 const PLAYGROUND_MARGIN = 30,
     PLAYGROUND_SIZE = 300;
@@ -18,7 +18,7 @@ class App extends Component {
     onRender() {
         return (
             <div class="app">
-                <h1 class="app__title">CSSTransitionGroup example</h1>
+                <h1 class="app__title">CssTransitionGroup example</h1>
                 <div class="app__info">
                     Click on circle to remove it.
                     <br/>
@@ -28,7 +28,7 @@ class App extends Component {
                     class="app__playground"
                     style={ { width : `${PLAYGROUND_SIZE}px`, height : `${PLAYGROUND_SIZE}px` } }
                     onClick={ this._onPlaygroundClick }>
-                    <CSSTransitionGroup
+                    <CssTransitionGroup
                         appearFrom="circle_appear-from"
                         appearTo="circle_appear-to"
                         enterFrom="circle_enter-from"
@@ -46,7 +46,7 @@ class App extends Component {
                                 />
                             )
                         }
-                    </CSSTransitionGroup>
+                    </CssTransitionGroup>
                 </div>
                 <div class="app__link">
                     <a

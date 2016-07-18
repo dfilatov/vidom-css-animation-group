@@ -1,11 +1,11 @@
 import { mountToDomSync, unmountFromDomSync, node } from 'vidom';
 import { AnimationGroup } from 'vidom-animation-group';
-import { CSSAnimationGroup } from '../../src';
+import { CssAnimationGroup } from '../../src';
 import { requestAnimationFrame, getAnimationEndEvent } from '../../src/utils';
 import simulate from 'simulate';
 import sinon from 'sinon';
 
-describe('CSSAnimationGroup', () => {
+describe('CssAnimationGroup', () => {
     const attrs = {
             appear : 'appear',
             enter : 'enter',
@@ -40,7 +40,7 @@ describe('CSSAnimationGroup', () => {
     it('should add "appear" class for each item', () => {
         mountToDomSync(
             domNode,
-            node(CSSAnimationGroup)
+            node(CssAnimationGroup)
                 .attrs(attrs)
                 .children([
                     node('div').key('a').attrs({ id : 'id1' }),
@@ -56,7 +56,7 @@ describe('CSSAnimationGroup', () => {
 
         mountToDomSync(
             domNode,
-            node(CSSAnimationGroup)
+            node(CssAnimationGroup)
                 .attrs(attrs)
                 .children([
                     node('div').key('a').attrs({ id : 'id1' })
@@ -78,7 +78,7 @@ describe('CSSAnimationGroup', () => {
     it('should remove "appear" classes on stop', done => {
         mountToDomSync(
             domNode,
-            node(CSSAnimationGroup)
+            node(CssAnimationGroup)
                 .children([
                     node('div').key('a').attrs({ id : 'id1' })
                 ]));
@@ -86,7 +86,7 @@ describe('CSSAnimationGroup', () => {
         setTimeout(() => {
             mountToDomSync(
                 domNode,
-                node(CSSAnimationGroup)
+                node(CssAnimationGroup)
                     .attrs(attrs));
 
             expect(hasClass('id1', 'appear')).not.to.be.ok();
@@ -98,11 +98,11 @@ describe('CSSAnimationGroup', () => {
     it('should add "enter" class for each item', () => {
         mountToDomSync(
             domNode,
-            node(CSSAnimationGroup));
+            node(CssAnimationGroup));
 
         mountToDomSync(
             domNode,
-            node(CSSAnimationGroup)
+            node(CssAnimationGroup)
                 .attrs(attrs)
                 .children([
                     node('div').key('a').attrs({ id : 'id1' }),
@@ -118,11 +118,11 @@ describe('CSSAnimationGroup', () => {
 
         mountToDomSync(
             domNode,
-            node(CSSAnimationGroup));
+            node(CssAnimationGroup));
 
         mountToDomSync(
             domNode,
-            node(CSSAnimationGroup)
+            node(CssAnimationGroup)
                 .attrs(attrs)
                 .children(node('div').key('a').attrs({ id : 'id1' })));
 
@@ -142,17 +142,17 @@ describe('CSSAnimationGroup', () => {
     it('should remove "enter" class on stop', done => {
         mountToDomSync(
             domNode,
-            node(CSSAnimationGroup));
+            node(CssAnimationGroup));
 
         mountToDomSync(
             domNode,
-            node(CSSAnimationGroup)
+            node(CssAnimationGroup)
                 .children(node('div').key('a').attrs({ id : 'id1' })));
 
         setTimeout(() => {
             mountToDomSync(
                 domNode,
-                node(CSSAnimationGroup)
+                node(CssAnimationGroup)
                     .attrs(attrs));
 
             expect(hasClass('id1', 'enter')).not.to.be.ok();
@@ -164,7 +164,7 @@ describe('CSSAnimationGroup', () => {
     it('should add "leave" class for each item', () => {
         mountToDomSync(
             domNode,
-            node(CSSAnimationGroup)
+            node(CssAnimationGroup)
                 .children([
                     node('div').key('a').attrs({ id : 'id1' }),
                     node('div').key('b').attrs({ id : 'id2' })
@@ -172,7 +172,7 @@ describe('CSSAnimationGroup', () => {
 
         mountToDomSync(
             domNode,
-            node(CSSAnimationGroup)
+            node(CssAnimationGroup)
                 .attrs(attrs));
 
         expect(hasClass('id1', 'leave')).to.be.ok();
@@ -184,14 +184,14 @@ describe('CSSAnimationGroup', () => {
 
         mountToDomSync(
             domNode,
-            node(CSSAnimationGroup)
+            node(CssAnimationGroup)
                 .children([
                     node('div').key('a').attrs({ id : 'id1' })
                 ]));
 
         mountToDomSync(
             domNode,
-            node(CSSAnimationGroup)
+            node(CssAnimationGroup)
                 .attrs(attrs));
 
         addAnimationEndListener('id1', () => {
@@ -210,19 +210,19 @@ describe('CSSAnimationGroup', () => {
     it('should remove "leave" classes on stop', done => {
         mountToDomSync(
             domNode,
-            node(CSSAnimationGroup)
+            node(CssAnimationGroup)
                 .children([
                     node('div').key('a').attrs({ id : 'id1' })
                 ]));
 
         mountToDomSync(
             domNode,
-            node(CSSAnimationGroup));
+            node(CssAnimationGroup));
 
         setTimeout(() => {
             mountToDomSync(
                 domNode,
-                node(CSSAnimationGroup)
+                node(CssAnimationGroup)
                     .children([
                         node('div').key('a').attrs({ id : 'id1' })
                     ]));

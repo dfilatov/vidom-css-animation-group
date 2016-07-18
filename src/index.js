@@ -1,4 +1,4 @@
-import CSSAnimationGroup from './CSSAnimationGroup';
-import CSSTransitionGroup from './CSSTransitionGroup';
+import CssAnimationGroup from './CssAnimationGroup';
+import CssTransitionGroup from './CssTransitionGroup';
 
-export { CSSAnimationGroup, CSSTransitionGroup };
+export { CssAnimationGroup, CssTransitionGroup };

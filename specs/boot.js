@@ -1,3 +1,3 @@
 import 'expect.js';
-import './CSSTransitionGroup/CSSTransitionGroup.spec.js';
-import './CSSAnimationGroup/CSSAnimationGroup.spec.js';
+import './CssTransitionGroup/CssTransitionGroup.spec.js';
+import './CssAnimationGroup/CssAnimationGroup.spec.js';
