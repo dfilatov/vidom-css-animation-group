@@ -64,7 +64,8 @@ body
 .circle_enter-from,
 .circle_leave-from
 {
-    transition: all 1s;
+    transition-property: width, height, opacity;
+    transition-duration: 1s;
 }
 
 .circle_appear-to,
