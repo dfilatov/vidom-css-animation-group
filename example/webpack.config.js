@@ -3,7 +3,7 @@ var jsLoaders = ['babel'];
 module.exports = {
     entry : __dirname + '/index.js',
     output : {
-        path : __dirname + '/debug',
+        path : __dirname,
         filename : 'index.bundle.js',
         publicPath : '/example/'
     },
