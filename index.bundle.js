@@ -96,7 +96,7 @@
 	            'class': 'app__playground',
 	            'style': { width: PLAYGROUND_SIZE + 'px', height: PLAYGROUND_SIZE + 'px' },
 	            'onClick': this._onPlaygroundClick
-	        }).children(__vnode__(_src.CSSTransitionGroup).attrs({
+	        }).children(__vnode__(_src.CssTransitionGroup).attrs({
 	            'appearFrom': 'circle_appear-from',
 	            'appearTo': 'circle_appear-to',
 	            'enterFrom': 'circle_enter-from',
@@ -644,8 +644,21 @@
 
 	var SimpleMap$1 = SimpleMap;
 
-	var BUBBLEABLE_NATIVE_EVENTS = ['blur', 'change', 'click', 'contextmenu', 'copy', 'cut', 'dblclick', 'drag', 'dragend', 'dragenter', 'dragleave', 'dragover', 'dragstart', 'drop', 'focus', 'input', 'keydown', 'keypress', 'keyup', 'mousedown', 'mousemove', 'mouseout', 'mouseover', 'mouseup', 'paste', 'submit', 'touchcancel', 'touchend', 'touchmove', 'touchstart', 'wheel'];
+	var ua = typeof navigator === 'undefined' ? '' : navigator.userAgent;
+
+	var isTrident = ua.indexOf('Trident') > -1;
+	var isEdge = ua.indexOf('Edge') > -1;
+	var isIos = /iPad|iPhone|iPod/.test(ua) && typeof MSStream === 'undefined';
+
+	var MOUSE_NATIVE_EVENTS = ['click', 'mousedown', 'mousemove', 'mouseout', 'mouseover', 'mouseup'];
+	var BUBBLEABLE_NATIVE_EVENTS = ['blur', 'change', 'click', 'contextmenu', 'copy', 'cut', 'dblclick', 'drag', 'dragend', 'dragenter', 'dragleave', 'dragover', 'dragstart', 'drop', 'focus', 'input', 'keydown', 'keypress', 'keyup', 'paste', 'submit', 'touchcancel', 'touchend', 'touchmove', 'touchstart', 'wheel'];
 	var NON_BUBBLEABLE_NATIVE_EVENTS = ['canplay', 'canplaythrough', 'complete', 'durationchange', 'emptied', 'ended', 'error', 'load', 'loadeddata', 'loadedmetadata', 'loadstart', 'mouseenter', 'mouseleave', 'pause', 'play', 'playing', 'progress', 'ratechange', 'scroll', 'seeked', 'seeking', 'stalled', 'suspend', 'timeupdate', 'volumechange', 'waiting'];
+	if (isIos) {
+	    NON_BUBBLEABLE_NATIVE_EVENTS = [].concat(NON_BUBBLEABLE_NATIVE_EVENTS, MOUSE_NATIVE_EVENTS);
+	} else {
+	    BUBBLEABLE_NATIVE_EVENTS = [].concat(BUBBLEABLE_NATIVE_EVENTS, MOUSE_NATIVE_EVENTS);
+	}
+
 	var listenersStorage = new SimpleMap$1();
 	var eventsCfg = {};
 	function globalEventListener(e, type) {
@@ -1110,11 +1123,6 @@
 	};
 
 	var emptyObj = {};
-
-	var ua = typeof navigator === 'undefined' ? '' : navigator.userAgent;
-
-	var isTrident = ua.indexOf('Trident') > -1;
-	var isEdge = ua.indexOf('Edge') > -1;
 
 	var elementProtos = {};
 
@@ -2935,20 +2943,20 @@
 	'use strict';
 
 	exports.__esModule = true;
-	exports.CSSTransitionGroup = exports.CSSAnimationGroup = undefined;
+	exports.CssTransitionGroup = exports.CssAnimationGroup = undefined;
 
-	var _CSSAnimationGroup = __webpack_require__(4);
+	var _CssAnimationGroup = __webpack_require__(4);
 
-	var _CSSAnimationGroup2 = _interopRequireDefault(_CSSAnimationGroup);
+	var _CssAnimationGroup2 = _interopRequireDefault(_CssAnimationGroup);
 
-	var _CSSTransitionGroup = __webpack_require__(7);
+	var _CssTransitionGroup = __webpack_require__(7);
 
-	var _CSSTransitionGroup2 = _interopRequireDefault(_CSSTransitionGroup);
+	var _CssTransitionGroup2 = _interopRequireDefault(_CssTransitionGroup);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.CSSAnimationGroup = _CSSAnimationGroup2.default;
-	exports.CSSTransitionGroup = _CSSTransitionGroup2.default;
+	exports.CssAnimationGroup = _CssAnimationGroup2.default;
+	exports.CssTransitionGroup = _CssTransitionGroup2.default;
 
 /***/ },
 /* 4 */
@@ -2970,22 +2978,22 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var CSSAnimationGroup = function (_Component) {
-	    _inherits(CSSAnimationGroup, _Component);
+	var CssAnimationGroup = function (_Component) {
+	    _inherits(CssAnimationGroup, _Component);
 
-	    function CSSAnimationGroup() {
-	        _classCallCheck(this, CSSAnimationGroup);
+	    function CssAnimationGroup() {
+	        _classCallCheck(this, CssAnimationGroup);
 
 	        return _possibleConstructorReturn(this, _Component.apply(this, arguments));
 	    }
 
-	    CSSAnimationGroup.prototype.onInit = function onInit() {
+	    CssAnimationGroup.prototype.onInit = function onInit() {
 	        this._onAppear = this._onAppear.bind(this);
 	        this._onEnter = this._onEnter.bind(this);
 	        this._onLeave = this._onLeave.bind(this);
 	    };
 
-	    CSSAnimationGroup.prototype.onRender = function onRender(_ref, children) {
+	    CssAnimationGroup.prototype.onRender = function onRender(_ref, children) {
 	        var appear = _ref.appear;
 	        var enter = _ref.enter;
 	        var leave = _ref.leave;
@@ -2997,22 +3005,22 @@
 	        }).children(children);
 	    };
 
-	    CSSAnimationGroup.prototype._onAppear = function _onAppear(domNode, onAppeared) {
+	    CssAnimationGroup.prototype._onAppear = function _onAppear(domNode, onAppeared) {
 	        return buildAnimation(domNode, this.getAttrs().appear, false, onAppeared);
 	    };
 
-	    CSSAnimationGroup.prototype._onEnter = function _onEnter(domNode, onEntered) {
+	    CssAnimationGroup.prototype._onEnter = function _onEnter(domNode, onEntered) {
 	        return buildAnimation(domNode, this.getAttrs().enter, false, onEntered);
 	    };
 
-	    CSSAnimationGroup.prototype._onLeave = function _onLeave(domNode, onLeft) {
+	    CssAnimationGroup.prototype._onLeave = function _onLeave(domNode, onLeft) {
 	        return buildAnimation(domNode, this.getAttrs().leave, true, onLeft);
 	    };
 
-	    return CSSAnimationGroup;
+	    return CssAnimationGroup;
 	}(_vidom.Component);
 
-	exports.default = CSSAnimationGroup;
+	exports.default = CssAnimationGroup;
 
 
 	function buildAnimation(domNode, animationClass, keepClass, cb) {
@@ -3366,22 +3374,22 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var CSSTransitionGroup = function (_Component) {
-	    _inherits(CSSTransitionGroup, _Component);
+	var CssTransitionGroup = function (_Component) {
+	    _inherits(CssTransitionGroup, _Component);
 
-	    function CSSTransitionGroup() {
-	        _classCallCheck(this, CSSTransitionGroup);
+	    function CssTransitionGroup() {
+	        _classCallCheck(this, CssTransitionGroup);
 
 	        return _possibleConstructorReturn(this, _Component.apply(this, arguments));
 	    }
 
-	    CSSTransitionGroup.prototype.onInit = function onInit() {
+	    CssTransitionGroup.prototype.onInit = function onInit() {
 	        this._onAppear = this._onAppear.bind(this);
 	        this._onEnter = this._onEnter.bind(this);
 	        this._onLeave = this._onLeave.bind(this);
 	    };
 
-	    CSSTransitionGroup.prototype.onRender = function onRender(_ref, children) {
+	    CssTransitionGroup.prototype.onRender = function onRender(_ref, children) {
 	        var appearFrom = _ref.appearFrom;
 	        var appearTo = _ref.appearTo;
 	        var enterFrom = _ref.enterFrom;
@@ -3410,7 +3418,7 @@
 	        }).children(children);
 	    };
 
-	    CSSTransitionGroup.prototype._onAppear = function _onAppear(domNode, onAppeared) {
+	    CssTransitionGroup.prototype._onAppear = function _onAppear(domNode, onAppeared) {
 	        var _getAttrs = this.getAttrs();
 
 	        var appearFrom = _getAttrs.appearFrom;
@@ -3420,7 +3428,7 @@
 	        return buildAnimation(domNode, appearFrom, appearTo, false, onAppeared);
 	    };
 
-	    CSSTransitionGroup.prototype._onEnter = function _onEnter(domNode, onEntered) {
+	    CssTransitionGroup.prototype._onEnter = function _onEnter(domNode, onEntered) {
 	        var _getAttrs2 = this.getAttrs();
 
 	        var enterFrom = _getAttrs2.enterFrom;
@@ -3430,7 +3438,7 @@
 	        return buildAnimation(domNode, enterFrom, enterTo, false, onEntered);
 	    };
 
-	    CSSTransitionGroup.prototype._onLeave = function _onLeave(domNode, onLeft) {
+	    CssTransitionGroup.prototype._onLeave = function _onLeave(domNode, onLeft) {
 	        var _getAttrs3 = this.getAttrs();
 
 	        var leaveFrom = _getAttrs3.leaveFrom;
@@ -3440,10 +3448,10 @@
 	        return buildAnimation(domNode, leaveFrom, leaveTo, true, onLeft);
 	    };
 
-	    return CSSTransitionGroup;
+	    return CssTransitionGroup;
 	}(_vidom.Component);
 
-	exports.default = CSSTransitionGroup;
+	exports.default = CssTransitionGroup;
 
 
 	function buildAnimation(domNode, classFrom, classTo, keepClassTo, cb) {
