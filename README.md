@@ -2,7 +2,7 @@
 
 ## What is it?
 
-This module provides API for "appearance", "entering" and "leaving" animation via CSS transitions and animations inside Vidom. It's a high-level component based on low-level [vidom-animation-group](https://github.com/dfilatov/vidom-animation-group).
+This module provides API for "appearance", "entering" and "leaving" animation via CSS transitions and animations inside [Vidom](https://github.com/dfilatov/vidom). It's a high-level component based on low-level [vidom-animation-group](https://github.com/dfilatov/vidom-animation-group).
 
 ## Demo
 
@@ -16,7 +16,7 @@ npm i vidom-css-animation-group
 
 ## How to use
 
-This module provides two components: CssTransitionGroup and CssAnimationGroup. If you animation is based on CSS transition, you should use the first one, or if you use CSS animation then use the second one.
+This module provides two components: [CssTransitionGroup](#csstransitiongroup) and [CssAnimationGroup](#cssanimationgroup). If you animation is based on CSS transition, you should use the first one, or if you use CSS animation then use the second one.
 
 ### CssTransitionGroup
 
