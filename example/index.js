@@ -1,18 +1,16 @@
-import { Component, mountToDom } from 'vidom';
+import { Component, mount } from 'vidom';
 import { CssTransitionGroup } from '../src';
 
 const PLAYGROUND_MARGIN = 30,
     PLAYGROUND_SIZE = 300;
 
 class App extends Component {
-    onInitialStateRequest() {
-        return {
-            circles : Array.apply(null, { length : 10 }).map(_ => generateCircle())
-        };
-    }
-
     onInit() {
         this._onPlaygroundClick = this._onPlaygroundClick.bind(this);
+
+        this.setState({
+            circles : Array.apply(null, { length : 10 }).map(_ => generateCircle())
+        });
     }
 
     onRender() {
@@ -36,7 +34,7 @@ class App extends Component {
                         leaveFrom="circle_leave-from"
                         leaveTo="circle_leave-to">
                         {
-                            this.getState().circles.map(({ key, style }) =>
+                            this.state.circles.map(({ key, style }) =>
                                 <div
                                     key={ key }
                                     class="circle"
@@ -62,7 +60,7 @@ class App extends Component {
     _onPlaygroundClick({ nativeEvent }) {
         this.setState({
             circles : [
-                ...this.getState().circles,
+                ...this.state.circles,
                 generateCircle(nativeEvent.layerX, nativeEvent.layerY)
             ]
         })
@@ -70,7 +68,7 @@ class App extends Component {
 
     _onClick(e, key) {
         e.stopPropagation();
-        this.setState({ circles : this.getState().circles.filter(circle => key !== circle.key) })
+        this.setState({ circles : this.state.circles.filter(circle => key !== circle.key) })
     }
 }
 
@@ -100,4 +98,4 @@ function generateColor() {
     return Math.floor(Math.random() * 255);
 }
 
-mountToDom(document.getElementById('root'), <App/>);
+mount(document.getElementById('root'), <App/>);

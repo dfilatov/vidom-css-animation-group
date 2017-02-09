@@ -9,7 +9,9 @@ export default class CssTransitionGroup extends Component {
         this._onLeave = this._onLeave.bind(this);
     }
 
-    onRender({ appearFrom, appearTo, enterFrom, enterTo, leaveFrom, leaveTo }, children) {
+    onRender() {
+        const { appearFrom, appearTo, enterFrom, enterTo, leaveFrom, leaveTo } = this.attrs;
+
         if(IS_DEBUG) {
             if(!appearFrom !== !appearTo) {
                 console.error('You must provide both "appearFrom" and "appearTo" class names.')
@@ -25,28 +27,28 @@ export default class CssTransitionGroup extends Component {
         }
 
         return node(AnimationGroup)
-            .attrs({
+            .setAttrs({
                 onAppear : appearFrom && this._onAppear,
                 onEnter : enterFrom && this._onEnter,
                 onLeave : leaveFrom && this._onLeave
             })
-            .children(children);
+            .setChildren(this.children);
     }
 
     _onAppear(domNode, onAppeared) {
-        const { appearFrom, appearTo } = this.getAttrs();
+        const { appearFrom, appearTo } = this.attrs;
 
         return buildAnimation(domNode, appearFrom, appearTo, false, onAppeared);
     }
 
     _onEnter(domNode, onEntered) {
-        const { enterFrom, enterTo } = this.getAttrs();
+        const { enterFrom, enterTo } = this.attrs;
 
         return buildAnimation(domNode, enterFrom, enterTo, false, onEntered);
     }
 
     _onLeave(domNode, onLeft) {
-        const { leaveFrom, leaveTo } = this.getAttrs();
+        const { leaveFrom, leaveTo } = this.attrs;
 
         return buildAnimation(domNode, leaveFrom, leaveTo, true, onLeft);
     }

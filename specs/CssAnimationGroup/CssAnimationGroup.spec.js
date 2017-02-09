@@ -1,4 +1,4 @@
-import { mountToDomSync, unmountFromDomSync, node } from 'vidom';
+import { mountSync, unmount, node } from 'vidom';
 import { AnimationGroup } from 'vidom-animation-group';
 import { CssAnimationGroup } from '../../src';
 import { requestAnimationFrame, getAnimationEndEvent } from '../../src/utils';
@@ -33,18 +33,18 @@ describe('CssAnimationGroup', () => {
     });
 
     afterEach(() => {
-        unmountFromDomSync(domNode);
+        unmount(domNode);
         document.body.removeChild(domNode);
     });
 
     it('should add "appear" class for each item', () => {
-        mountToDomSync(
+        mountSync(
             domNode,
             node(CssAnimationGroup)
-                .attrs(attrs)
-                .children([
-                    node('div').key('a').attrs({ id : 'id1' }),
-                    node('div').key('b').attrs({ id : 'id2' })
+                .setAttrs(attrs)
+                .setChildren([
+                    node('div').setKey('a').setAttrs({ id : 'id1' }),
+                    node('div').setKey('b').setAttrs({ id : 'id2' })
                 ]));
 
         expect(hasClass('id1', 'appear')).to.be.ok();
@@ -54,12 +54,12 @@ describe('CssAnimationGroup', () => {
     it('should remove "appear" class, call callback on animation end', done => {
         sinon.spy(AnimationGroup.prototype, '_onAppeared');
 
-        mountToDomSync(
+        mountSync(
             domNode,
             node(CssAnimationGroup)
-                .attrs(attrs)
-                .children([
-                    node('div').key('a').attrs({ id : 'id1' })
+                .setAttrs(attrs)
+                .setChildren([
+                    node('div').setKey('a').setAttrs({ id : 'id1' })
                 ]));
 
         addAnimationEndListener('id1', () => {
@@ -76,18 +76,18 @@ describe('CssAnimationGroup', () => {
     });
 
     it('should remove "appear" classes on stop', done => {
-        mountToDomSync(
+        mountSync(
             domNode,
             node(CssAnimationGroup)
-                .children([
-                    node('div').key('a').attrs({ id : 'id1' })
+                .setChildren([
+                    node('div').setKey('a').setAttrs({ id : 'id1' })
                 ]));
 
         setTimeout(() => {
-            mountToDomSync(
+            mountSync(
                 domNode,
                 node(CssAnimationGroup)
-                    .attrs(attrs));
+                    .setAttrs(attrs));
 
             expect(hasClass('id1', 'appear')).not.to.be.ok();
 
@@ -96,17 +96,17 @@ describe('CssAnimationGroup', () => {
     });
 
     it('should add "enter" class for each item', () => {
-        mountToDomSync(
+        mountSync(
             domNode,
             node(CssAnimationGroup));
 
-        mountToDomSync(
+        mountSync(
             domNode,
             node(CssAnimationGroup)
-                .attrs(attrs)
-                .children([
-                    node('div').key('a').attrs({ id : 'id1' }),
-                    node('div').key('b').attrs({ id : 'id2' })
+                .setAttrs(attrs)
+                .setChildren([
+                    node('div').setKey('a').setAttrs({ id : 'id1' }),
+                    node('div').setKey('b').setAttrs({ id : 'id2' })
                 ]));
 
         expect(hasClass('id1', 'enter')).to.be.ok();
@@ -116,15 +116,15 @@ describe('CssAnimationGroup', () => {
     it('should remove "enter" class, call callback on animation end', done => {
         sinon.spy(AnimationGroup.prototype, '_onEntered');
 
-        mountToDomSync(
+        mountSync(
             domNode,
             node(CssAnimationGroup));
 
-        mountToDomSync(
+        mountSync(
             domNode,
             node(CssAnimationGroup)
-                .attrs(attrs)
-                .children(node('div').key('a').attrs({ id : 'id1' })));
+                .setAttrs(attrs)
+                .setChildren(node('div').setKey('a').setAttrs({ id : 'id1' })));
 
         addAnimationEndListener('id1', () => {
             expect(hasClass('id1', 'enter')).not.to.be.ok();
@@ -140,20 +140,20 @@ describe('CssAnimationGroup', () => {
     });
 
     it('should remove "enter" class on stop', done => {
-        mountToDomSync(
+        mountSync(
             domNode,
             node(CssAnimationGroup));
 
-        mountToDomSync(
+        mountSync(
             domNode,
             node(CssAnimationGroup)
-                .children(node('div').key('a').attrs({ id : 'id1' })));
+                .setChildren(node('div').setKey('a').setAttrs({ id : 'id1' })));
 
         setTimeout(() => {
-            mountToDomSync(
+            mountSync(
                 domNode,
                 node(CssAnimationGroup)
-                    .attrs(attrs));
+                    .setAttrs(attrs));
 
             expect(hasClass('id1', 'enter')).not.to.be.ok();
 
@@ -162,18 +162,18 @@ describe('CssAnimationGroup', () => {
     });
 
     it('should add "leave" class for each item', () => {
-        mountToDomSync(
+        mountSync(
             domNode,
             node(CssAnimationGroup)
-                .children([
-                    node('div').key('a').attrs({ id : 'id1' }),
-                    node('div').key('b').attrs({ id : 'id2' })
+                .setChildren([
+                    node('div').setKey('a').setAttrs({ id : 'id1' }),
+                    node('div').setKey('b').setAttrs({ id : 'id2' })
                 ]));
 
-        mountToDomSync(
+        mountSync(
             domNode,
             node(CssAnimationGroup)
-                .attrs(attrs));
+                .setAttrs(attrs));
 
         expect(hasClass('id1', 'leave')).to.be.ok();
         expect(hasClass('id2', 'leave')).to.be.ok();
@@ -182,17 +182,17 @@ describe('CssAnimationGroup', () => {
     it('should not remove "leave" class, call callback on animation end', done => {
         sinon.spy(AnimationGroup.prototype, '_onLeft');
 
-        mountToDomSync(
+        mountSync(
             domNode,
             node(CssAnimationGroup)
-                .children([
-                    node('div').key('a').attrs({ id : 'id1' })
+                .setChildren([
+                    node('div').setKey('a').setAttrs({ id : 'id1' })
                 ]));
 
-        mountToDomSync(
+        mountSync(
             domNode,
             node(CssAnimationGroup)
-                .attrs(attrs));
+                .setAttrs(attrs));
 
         addAnimationEndListener('id1', () => {
             expect(hasClass('id1', 'leave')).to.be.ok();
@@ -208,23 +208,23 @@ describe('CssAnimationGroup', () => {
     });
 
     it('should remove "leave" classes on stop', done => {
-        mountToDomSync(
+        mountSync(
             domNode,
             node(CssAnimationGroup)
-                .children([
-                    node('div').key('a').attrs({ id : 'id1' })
+                .setChildren([
+                    node('div').setKey('a').setAttrs({ id : 'id1' })
                 ]));
 
-        mountToDomSync(
+        mountSync(
             domNode,
             node(CssAnimationGroup));
 
         setTimeout(() => {
-            mountToDomSync(
+            mountSync(
                 domNode,
                 node(CssAnimationGroup)
-                    .children([
-                        node('div').key('a').attrs({ id : 'id1' })
+                    .setChildren([
+                        node('div').setKey('a').setAttrs({ id : 'id1' })
                     ]));
 
             expect(hasClass('id1', 'leavel')).not.to.be.ok();

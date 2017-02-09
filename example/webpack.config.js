@@ -8,7 +8,7 @@ module.exports = {
         publicPath : '/example/'
     },
     module : {
-        loaders: [
+        loaders : [
             { test : /\.js$/, loaders : jsLoaders }
         ]
     }
