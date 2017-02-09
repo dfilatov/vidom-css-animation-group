@@ -9,26 +9,28 @@ export default class CssAnimationGroup extends Component {
         this._onLeave = this._onLeave.bind(this);
     }
 
-    onRender({ appear, enter, leave }, children) {
+    onRender() {
+        const { appear, enter, leave } = this.attrs;
+
         return node(AnimationGroup)
-            .attrs({
+            .setAttrs({
                 onAppear : appear && this._onAppear,
                 onEnter : enter && this._onEnter,
                 onLeave : leave && this._onLeave
             })
-            .children(children);
+            .setChildren(this.children);
     }
 
     _onAppear(domNode, onAppeared) {
-        return buildAnimation(domNode, this.getAttrs().appear, false, onAppeared);
+        return buildAnimation(domNode, this.attrs.appear, false, onAppeared);
     }
 
     _onEnter(domNode, onEntered) {
-        return buildAnimation(domNode, this.getAttrs().enter, false, onEntered);
+        return buildAnimation(domNode, this.attrs.enter, false, onEntered);
     }
 
     _onLeave(domNode, onLeft) {
-        return buildAnimation(domNode, this.getAttrs().leave, true, onLeft);
+        return buildAnimation(domNode, this.attrs.leave, true, onLeft);
     }
 }
 
