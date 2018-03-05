@@ -1,4 +1,4 @@
-import { Component, node, IS_DEBUG, console } from 'vidom';
+import { Component, elem, IS_DEBUG, console } from 'vidom';
 import { AnimationGroup } from 'vidom-animation-group';
 import { requestAnimationFrame, cancelAnimationFrame, getAnimationEndEvent } from './utils';
 
@@ -26,13 +26,15 @@ export default class CssTransitionGroup extends Component {
             }
         }
 
-        return node(AnimationGroup)
-            .setAttrs({
+        return elem(
+            AnimationGroup,
+            null,
+            {
                 onAppear : appearFrom && this._onAppear,
                 onEnter : enterFrom && this._onEnter,
                 onLeave : leaveFrom && this._onLeave
-            })
-            .setChildren(this.children);
+            },
+            this.children);
     }
 
     _onAppear(domNode, onAppeared) {

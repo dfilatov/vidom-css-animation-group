@@ -1,4 +1,4 @@
-import { Component, node } from 'vidom';
+import { Component, elem } from 'vidom';
 import { AnimationGroup } from 'vidom-animation-group';
 import { getAnimationEndEvent } from './utils';
 
@@ -12,13 +12,15 @@ export default class CssAnimationGroup extends Component {
     onRender() {
         const { appear, enter, leave } = this.attrs;
 
-        return node(AnimationGroup)
-            .setAttrs({
+        return elem(
+            AnimationGroup,
+            null,
+            {
                 onAppear : appear && this._onAppear,
                 onEnter : enter && this._onEnter,
                 onLeave : leave && this._onLeave
-            })
-            .setChildren(this.children);
+            },
+            this.children);
     }
 
     _onAppear(domNode, onAppeared) {
