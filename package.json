@@ -16,8 +16,8 @@
     "lib"
   ],
   "dependencies": {
-    "vidom": "^0.10.0",
-    "vidom-animation-group": "^0.3.1"
+    "vidom": "^0.10.2",
+    "vidom-animation-group": "^0.3.2"
   },
   "devDependencies": {
     "babel-core": "6.10.4",
