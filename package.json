@@ -1,6 +1,6 @@
 {
   "name": "vidom-css-animation-group",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "CSS animation helper for vidom",
   "keywords": [
     "vidom",
