@@ -25,14 +25,16 @@ class App extends Component {
                 <div
                     class="app__playground"
                     style={ { width : `${PLAYGROUND_SIZE}px`, height : `${PLAYGROUND_SIZE}px` } }
-                    onClick={ this._onPlaygroundClick }>
+                    onClick={ this._onPlaygroundClick }
+                >
                     <CssTransitionGroup
                         appearFrom="circle_appear-from"
                         appearTo="circle_appear-to"
                         enterFrom="circle_enter-from"
                         enterTo="circle_enter-to"
                         leaveFrom="circle_leave-from"
-                        leaveTo="circle_leave-to">
+                        leaveTo="circle_leave-to"
+                    >
                         {
                             this.state.circles.map(({ key, style }) =>
                                 <div
@@ -49,7 +51,8 @@ class App extends Component {
                 <div class="app__link">
                     <a
                         href="//github.com/dfilatov/vidom-css-animation-group/tree/master/example"
-                        target="_blank">
+                        target="_blank"
+                    >
                         Source code
                     </a>
                 </div>
@@ -57,11 +60,11 @@ class App extends Component {
         );
     }
 
-    _onPlaygroundClick({ nativeEvent }) {
+    _onPlaygroundClick(e) {
         this.setState({
             circles : [
                 ...this.state.circles,
-                generateCircle(nativeEvent.layerX, nativeEvent.layerY)
+                generateCircle(e.layerX, e.layerY)
             ]
         })
     }

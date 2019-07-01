@@ -1,4 +1,3 @@
 {
-  "presets": ["es2015-minimal"],
-  "plugins": ["vidom-jsx"]
+  "presets": [["@babel/env", { "loose": true }]]
 }
